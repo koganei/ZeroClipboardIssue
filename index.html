@@ -1,0 +1,27 @@
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<div class="make-zclip" title="My text"   data-clipboard-text="My text">test</div>
+<div class="make-zclip" title="My text 2" data-clipboard-text="My text 2">test 2</div>
+<div class="make-zclip" title="My text 3" data-clipboard-text="My text 3">test 3</div>
+<div class="make-zclip" title="My text 4" data-clipboard-text="My text 4">test 4</div>
+<div class="make-zclip" title="My text 5" data-clipboard-text="My text 5">test 5</div>
+<div class="make-zclip" title="My text 6" data-clipboard-text="My text 6">test 6</div>
+
+<script src="ZeroClipboard.js"></script>
+<script>
+// ZeroClipboard.setDefaults();
+console.log($('.make-zclip').get());
+var clip = new ZeroClipboard( $('.make-zclip').get(), {
+  trustedDomains: "http://jsfiddle.net",
+  moviePath: "http://rawgithub.com/zeroclipboard/zeroclipboard/master/ZeroClipboard.swf"
+} );
+
+clip.on( "load", function(client) {
+
+  client.on( "complete", function(client, args) {
+    // `this` is the element that was clicked
+    this.style.display = "none";
+    alert("Copied text to clipboard: " + args.text );
+  } );
+} );
+</script>
